@@ -1,0 +1,207 @@
+swagger: '2.0'
+info:
+title: Item CRUD API's
+description: API for managing items in a database
+version: 1.0.0
+host: localhost:3000
+basePath: /api/v1
+schemes:
+
+paths: 
+  /api/v1/items:
+    get:
+      items:
+      - Tags
+      summary: get all items
+      description: get all items
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Items'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+    post:
+      items:
+      - items
+      summary: create a items
+      description: create a items
+      requestBody:
+        description: The items details for creation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+        required: true
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /api/v1/items/{id}:
+    get:
+      items:
+      - Items
+      summary: get a Items
+      description: get a Items
+      parameters:
+      - name: id
+        in: path
+        description: The Tag id to get tags details for
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426655440000
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Items'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  /api/v1/items/{id}:
+    put:
+      items:
+      - Items
+      summary: Update the Items
+      description: Update the Items
+      parameters:
+      - name: id
+        in: path
+        description: The item id to update item details for
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426655440000
+      requestBody:
+        description: The item details passed in with the request as body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Items'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Items'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+   /api/v1/items/{id}:              
+    delete:
+      items:
+      - Items
+      summary: Delete the Items
+      description: Delete the Items
+      parameters:
+      - name: id
+        in: path
+        description: The items Id for which item is to be deleted
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: 123e4567-e89b-12d3-a456-426655440000
+      responses:
+        204:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+  
+
+components:
+  schemas:
+    Items:
+      properties:
+        title:
+          type: string
+          example: test
+        description:
+          type: string
+          example: admin
+        createdat:
+          type: string
+          example: 2019-05-29T10:47:55.596Z
+        updatedat:
+          type: string
+          example: 2019-05-29T10:47:55.596Z
+    NotFoundError:
+      properties:
+        code:
+          type: number
+          example: 404
+        message:
+          type: string
+          example: Not Found
+    InternalServerError:
+      properties:
+        code:
+          type: number
+          example: 500
+        message:
+          type: string
+          example: Internal Server Error
+  

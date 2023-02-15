@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                              
+    "experimentalDecorators": true,                   
+     "emitDecoratorMetadata": true,                    
+    "module": "commonjs",                                
+     "moduleResolution": "node",                       
+     "baseUrl": "./",                                 
+     "resolveJsonModule": true,                        
+     "maxNodeModuleJsDepth": 1,                        
+     "sourceMap": true,                                
+     "outDir": "dist",                                 
+     "allowSyntheticDefaultImports": true,             
+    "esModuleInterop": true,                           
+    "forceConsistentCasingInFileNames": true,          
+    "strict": true,                                    
+     "noImplicitAny": false,                           
+    "skipLibCheck": true                               
+  }
+}
